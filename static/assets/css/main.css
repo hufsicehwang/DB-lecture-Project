@@ -25,8 +25,8 @@ html,body{
     position: relative;
 }
 .signUp{
-    width: 400px;
-    height: 500px;
+    width: 500px;
+    height: 600px;
     background-color: white;
     position: absolute;
     right: 10%;
@@ -49,7 +49,7 @@ html,body{
     height:150px;
 }
 .signUp-text span{
-    font-size: large;
+    font-size: 25px;
     font-weight: 600;
     margin-bottom: 20px;
 }
@@ -63,13 +63,13 @@ html,body{
 }
 .signUp-form input{
     border: none;
-    width: 230px;
-    height: 35px;
+    width: 280px;
+    height: 40px;
     /* border-bottom: 2px solid #adb5bd; */
     background-color: #f1f3f5;
     border-radius: 3px;
     font-size: 15px;
-    margin-top: 25px;
+    margin-top: 30px;
     box-shadow: 0 0  5px rgba(0,0,0, 0.7);
 }
 form input:focus{
@@ -81,11 +81,11 @@ form input:focus::placeholder{  /*  클릭시 text 없어짐 */
 }
 .signUp-form button{
     border: none;
-    width: 180px;
-    height: 30px;
+    width: 210px;
+    height: 40px;
     background-color: #ffc9c9;
     margin-top: 60px;
-    margin-left: 25px;
+    margin-left: 35px;
     box-shadow: 0 0  3px rgba(0,0,0, 0.7);
 }
 
@@ -96,9 +96,10 @@ form button:hover{
 
 input::-webkit-input-placeholder {
     text-align: center;
+    color: #000;
 }
 
 .to-login{
-    margin:50px 0 0 25px;
+    margin:70px 0 0 45px;
 }
 /* END SIGN UP */
