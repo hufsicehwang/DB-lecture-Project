@@ -4,4 +4,5 @@ from . import views
 # 기본 url = 'main/'
 urlpatterns = [
     path('',views.signUp),
+    path('login/',views.login),
 ]

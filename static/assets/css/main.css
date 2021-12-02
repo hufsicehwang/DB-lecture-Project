@@ -14,12 +14,22 @@ html,body{
     align-items: center;
     position: relative;
 }
+.main2{
+    width: 100%;
+    height: 100%;
+    background-image: url(/static/assets/image/login.jpg);  
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
 .signUp{
     width: 400px;
     height: 500px;
     background-color: white;
     position: absolute;
-    right: 15%;
+    right: 10%;
     border-radius: 5px;
     box-shadow: 0 0 20px #000;
 }
@@ -28,6 +38,15 @@ html,body{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.logo-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo-section img{
+    width:150px;
+    height:150px;
 }
 .signUp-text span{
     font-size: large;
@@ -77,5 +96,9 @@ form button:hover{
 
 input::-webkit-input-placeholder {
     text-align: center;
+}
+
+.to-login{
+    margin:50px 0 0 25px;
 }
 /* END SIGN UP */
