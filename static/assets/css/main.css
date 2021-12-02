@@ -1,0 +1,81 @@
+/* START SIGN UP */
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+}
+.main{
+    width: 100%;
+    height: 100%;
+    background-image: url(/static/assets/image/signUp.jpg);  
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.signUp{
+    width: 400px;
+    height: 500px;
+    background-color: white;
+    position: absolute;
+    right: 15%;
+    border-radius: 5px;
+    box-shadow: 0 0 20px #000;
+}
+.signUp-text{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.signUp-text span{
+    font-size: large;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.signUp-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.input-wapper{
+    display: inline-grid;
+}
+.signUp-form input{
+    border: none;
+    width: 230px;
+    height: 35px;
+    /* border-bottom: 2px solid #adb5bd; */
+    background-color: #f1f3f5;
+    border-radius: 3px;
+    font-size: 15px;
+    margin-top: 25px;
+    box-shadow: 0 0  5px rgba(0,0,0, 0.7);
+}
+form input:focus{
+    outline: none;
+    box-shadow: 0 0  5px #e03131;
+}
+form input:focus::placeholder{  /*  클릭시 text 없어짐 */
+    color: transparent;
+}
+.signUp-form button{
+    border: none;
+    width: 180px;
+    height: 30px;
+    background-color: #ffc9c9;
+    margin-top: 60px;
+    margin-left: 25px;
+    box-shadow: 0 0  3px rgba(0,0,0, 0.7);
+}
+
+form button:hover{
+    background-color: #f03e3e;
+}
+
+
+input::-webkit-input-placeholder {
+    text-align: center;
+}
+/* END SIGN UP */

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/assets/css/main.css">
+    <title>MovieNote</title>
+</head>
+<body>
+    <div class="main">
+        <div class="signUp">
+            <div class="signUp-text"><span>SIGN UP</span></div>
+            <form action="" method="POST" class="signUp-form">
+                {% csrf_token %}
+                <div class="input-wapper">
+                    <input type="email" placeholder="Email을 입력해 주세요." id="email" name="email" autocomplete="off">
+                    <input type="text" placeholder="이름을 입력해 주세요." id="username" name="username" autocomplete="off">
+                    <input type="password" placeholder="비밀번호를 입력해 주세요." id="password" name="password" autocomplete="off">
+                    <input type="password" placeholder="비밀번호를 다시 입력해 주세요." id="re-password" name="re-password" autocomplete="off">
+                    <button>회원가입</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <script>
+        var message = "{{error}}"
+        if (message){
+            alert(message)
+        }
+    </script>
+</body>
+</html>

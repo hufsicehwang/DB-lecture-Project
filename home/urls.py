@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-
+# 기본 url = 'home/'
 urlpatterns = [
-    path('',views.review, name='home'),
+    path('review/',views.review, name='home'),
 ]
