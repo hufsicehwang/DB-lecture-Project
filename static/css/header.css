@@ -31,6 +31,7 @@ header > div {
 
 #title {
   width: 100%;
+  cursor: pointer;
 }
 #title .parent {
   line-height: 1em;
@@ -47,6 +48,8 @@ header > div {
 }
 #reference > a {
   color: #444;
+  width: 4rem;
+  cursor: pointer;
 }
 #reference > a + a {
   margin-left: 1rem;
