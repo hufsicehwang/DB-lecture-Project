@@ -3,5 +3,6 @@ from . import views
 
 # 기본 url = 'home/'
 urlpatterns = [
-    path('review/',views.review, name='home'),
+    path('dbtest/',views.data_insert, name='data_insert'),
+    path('review/',views.review, name='home')
 ]
