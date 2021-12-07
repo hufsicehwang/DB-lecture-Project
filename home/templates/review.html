@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>리뷰작성</title>
-        <link rel="stylesheet" href="/static/css/header.css">
-        <link rel="stylesheet" href="/static/css/review.css">
+        <title>Movie Note</title>
+        <link rel="stylesheet" href="/static/assets/css/header.css">
+        <link rel="stylesheet" href="/static/css/review.css?after?after">
         <script src="/static/js/includeHTML.js"></script>
         
     </head>
     <body>
-        <header include-html="/static/html/header.html"></header>
+        <header include-html="/static/html/header.html?after"></header>
         <!-- <h3 class="review_h3">공개 설정</h3> -->
         <div class="form__group field">
             <form action="" method="post">
@@ -72,6 +72,14 @@
             document.getElementById("public").style.color="rgb(134, 142, 150)"
         
         }
-
+    </script>
+       <script>
+        var user = document.getElementById('user');
+        user.addEventListener('mouseover',function(){
+            document.getElementById('user-text').style.display='block';
+        })
+        user.addEventListener('mouseout',function(){
+            document.getElementById('user-text').style.display='none';
+        })
     </script>
 </html>

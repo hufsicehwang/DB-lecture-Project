@@ -1,8 +1,9 @@
 from typing import Generator
 from typing_extensions import Required
 from django.http.request import HttpRequest
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from urllib.request import urlopen , Request
+from main.models import User
 from .models import *
 import re
 import json
@@ -51,3 +52,18 @@ def data_insert(request):
                 detail_movie.save()
                 
         return render(request,'review.html')
+
+
+
+def home(request):
+    res_data = {}
+    user_session = request.session.get('user')              # 로그인 체크
+    if user_session:
+        user = User.objects.get(pk=user_session)
+
+        if request.method == 'GET':
+            return render(request, 'home.html', res_data)
+        elif request.method == 'POST':
+            return render(request, 'home.html', res_data)
+    else:
+        return redirect('/main/login')
