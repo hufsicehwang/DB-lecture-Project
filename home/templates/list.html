@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Note</title>
+    <link rel="stylesheet" href="/static/assets/css/header.css?after">
+    <link rel="stylesheet" href="/static/assets/css/list.css">
+    <script src="/static/js/includeHTML.js"></script>
+</head>
+<body>
+    <header include-html="/static/html/header.html?after"></header>
+    <div class="wapper">
+        {% if page.object_list %}
+            {% for Notice in page.object_list %}
+                <div class="list">
+                    <div class="top"><span class="title">Notice.movieNm</span><span>★★★☆☆</span></div>
+                    <div class="buttom"><span class="w1">작성자: <span class="w2">Notice.username</span></span><span class="date">Notice.writed_date</span></div>
+                </div>
+            {% endfor%}
+        {% endif%}
+    </div>
+    <script>
+        includeHTML();
+    </script>
+</body>
+</html>

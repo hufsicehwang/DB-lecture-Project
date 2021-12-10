@@ -7,6 +7,7 @@ from main.models import User
 from .models import *
 import re
 import json
+from django.core.paginator import Paginator, EmptyPage
 def review(request):
     if request.method =="GET":
         # print(detail_getJson)
@@ -67,3 +68,55 @@ def home(request):
             return render(request, 'home.html', res_data)
     else:
         return redirect('/main/login')
+
+def list(request):
+    res_data = {}
+    user_session = request.session.get('user')              # 로그인 체크
+    if user_session:
+        user = User.objects.get(pk=user_session)
+
+        page = request.GET.get("page",1)
+        all_list = Notice.objects.all().order_by('-make_date')
+        paginator = Paginator(all_list,100,orphans=5)
+        try:
+            notice = paginator.page(int(page))
+        except EmptyPage:
+            pass
+        res_data["page"] = notice
+
+        res_data['username'] = user.username
+
+        if request.method == 'GET':
+            return render(request, 'list.html', res_data)
+        elif request.method == 'POST':
+            return render(request, 'list.html', res_data)
+    else:
+        return redirect('/main/login')
+
+def mylist(request):
+    res_data = {}
+    user_session = request.session.get('user')              # 로그인 체크
+    if user_session:
+        user = User.objects.get(pk=user_session)
+
+        if request.method == 'GET':
+            return render(request, 'list.html', res_data)
+        elif request.method == 'POST':
+            return render(request, 'list.html', res_data)
+    else:
+        return redirect('/main/login')
+
+def detail(request):
+    res_data = {}
+    user_session = request.session.get('user')              # 로그인 체크
+    if user_session:
+        user = User.objects.get(pk=user_session)
+
+        if request.method == 'GET':
+            return render(request, 'detail.html', res_data)
+        elif request.method == 'POST':
+            return render(request, 'home.html', res_data)
+    else:
+        return redirect('/main/login')
+
+        

@@ -39,6 +39,7 @@ html,body{
     margin-left: 70px;
     box-shadow: 0 0  10px rgba(0,0,0);
     transition: 0.5s;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .btn:hover{

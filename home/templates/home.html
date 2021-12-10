@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Movie Note</title>
-    <link rel="stylesheet" href="/static/assets/css/header.css">
-    <link rel="stylesheet" href="/static/assets/css/home.css">
+    <link rel="stylesheet" href="/static/assets/css/header.css?after">
+    <link rel="stylesheet" href="/static/assets/css/home.css?after">
     <script src="/static/js/includeHTML.js"></script>
 </head>
 <body>
-    <header include-html="/static/html/header.html"></header>
+    <header include-html="/static/html/header.html?after"></header>
     <div class="container">
         <div class="main-text">
             <span>8만개 이상의 영화 Data Record 보유!</span><br><br>
@@ -16,13 +16,10 @@
             <span>나만의 Movie Note를 만들어 보세요!</span>
         </div>
         <div class="main-btn">
-            <button class="btn">Movie Note 작성하기</button>
-            <button class="btn">다른 사람들의 Movie Note 둘러보기</button>
+            <button class="btn btn1">나만의 Movie Note 작성하기</button>
+            <button class="btn btn2">다른 사람들의 Movie Note 둘러보기</button>
         </div>
     </div>
-
-
-
     <script>
         includeHTML();
     </script>
