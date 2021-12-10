@@ -1,5 +1,16 @@
+
 html, body{
   overflow-x: hidden;
+.searchBox {
+  display:flex;
+}
+.searchBtn{
+  width: 3rem;
+  height: 3rem;
+  background-color: rebeccapurple;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .form__group {
@@ -101,7 +112,7 @@ html, body{
 .contents{
   
     display: flex;
-    margin: 2rem auto;
+    margin: 2.5rem auto;
     width: 80%;
 }
 .contents_btn{
@@ -175,4 +186,37 @@ html, body{
 }
 .red {
     background-color: rgb(32, 201, 151);
+}
+.star-rating {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  justify-content: space-around;
+  padding: 0 0.2em;
+  text-align: center;
+  width: 5em;
+}
+.star{
+  padding: 0 1rem;
+}
+.star-rating input {
+  display: none;
+}
+ 
+.star-rating label {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2.3px;
+  -webkit-text-stroke-color: #2b2a29;
+  cursor: pointer;
+}
+ 
+.star-rating :checked ~ label {
+  -webkit-text-fill-color: gold;
+}
+ 
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  -webkit-text-fill-color: #fff58c;
 }
