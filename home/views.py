@@ -6,6 +6,10 @@ from urllib.request import urlopen , Request
 from .models import *
 import re
 import json
+import simplejson
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from django.http import HttpResponse
 def review(request):
     if request.method =="GET":
         # print(detail_getJson)
@@ -51,3 +55,12 @@ def data_insert(request):
                 detail_movie.save()
                 
         return render(request,'review.html')
+@csrf_exempt
+def searchMovie(request):
+    if request.method=="POST":
+        req = request.body.decode('utf-8')
+        print(req)
+        my_response = list(MovieList.objects.filter(movieNm=req).values())
+        print(my_response)
+        return HttpResponse((my_response))
+        
