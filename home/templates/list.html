@@ -4,20 +4,30 @@
     <meta charset="UTF-8">
     <title>Movie Note</title>
     <link rel="stylesheet" href="/static/assets/css/header.css?after">
-    <link rel="stylesheet" href="/static/assets/css/list.css">
+    <link rel="stylesheet" href="/static/assets/css/list.css?after">
     <script src="/static/js/includeHTML.js"></script>
 </head>
 <body>
     <header include-html="/static/html/header.html?after"></header>
     <div class="wapper">
-        {% if page.object_list %}
-            {% for Notice in page.object_list %}
-                <div class="list">
-                    <div class="top"><span class="title">Notice.movieNm</span><span>★★★☆☆</span></div>
-                    <div class="buttom"><span class="w1">작성자: <span class="w2">Notice.username</span></span><span class="date">Notice.writed_date</span></div>
-                </div>
-            {% endfor%}
-        {% endif%}
+        <div class="wapper-text"><img src="/static/assets/image/people.png" alt=""> 둘러보기</div>
+        <div class="content">
+            {% if page.object_list %}
+                {% for Notice in page.object_list %}
+                    {% if forloop.counter0|divisibleby:2 %}
+                    <div class="list2th" onclick="location.href='/home/detail/{{Notice.pk}}'">
+                        <div class="top"><span class="title">{{Notice.movieNm}}</span><span>★★★☆☆</span></div>
+                        <div class="buttom"><span class="w1">작성자: <span class="w2">{{Notice.username}}</span></span><span class="date">{{Notice.writed_date|date:'Y년 n월 j일 G:i'}}</span></div>
+                    </div>
+                    {%else%}
+                    <div class="list" onclick="location.href='/home/detail/{{Notice.pk}}'">
+                        <div class="top"><span class="title">{{Notice.movieNm}}</span><span>★★★☆☆</span></div>
+                        <div class="buttom"><span class="w1">작성자: <span class="w2">{{Notice.username}}</span></span><span class="date">{{Notice.writed_date|date:'Y년 n월 j일 G:i'}}</span></div>
+                    </div>
+                    {% endif%}
+                {% endfor%}
+            {% endif%}
+        </div>
     </div>
     <script>
         includeHTML();

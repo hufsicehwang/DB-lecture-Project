@@ -29,7 +29,7 @@ class MovieNote(models.Model):
 
 class Notice(models.Model):
     id = models.AutoField(primary_key=True)
-    username = models.EmailField(max_length=128, verbose_name="작성자")
+    username = models.CharField(max_length=128, verbose_name="작성자")
     movieNm = models.TextField(max_length=128,verbose_name="movieNmEn")#제목
     review = models.TextField(max_length=1024, verbose_name="리뷰")
     star = models.IntegerField(verbose_name="별점")

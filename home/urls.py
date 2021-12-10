@@ -9,5 +9,5 @@ urlpatterns = [
     path('',views.home),
     path('mylist/',views.mylist),
     path('list/',views.list),
-    path('detail/',views.detail),
+    path('detail/<int:pk>',views.detail),
 ]

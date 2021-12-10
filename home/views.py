@@ -76,15 +76,13 @@ def list(request):
         user = User.objects.get(pk=user_session)
 
         page = request.GET.get("page",1)
-        all_list = Notice.objects.all().order_by('-make_date')
+        all_list = Notice.objects.all().order_by('-writed_date')
         paginator = Paginator(all_list,100,orphans=5)
         try:
             notice = paginator.page(int(page))
         except EmptyPage:
             pass
         res_data["page"] = notice
-
-        res_data['username'] = user.username
 
         if request.method == 'GET':
             return render(request, 'list.html', res_data)
@@ -106,11 +104,25 @@ def mylist(request):
     else:
         return redirect('/main/login')
 
-def detail(request):
+def detail(request,pk):
     res_data = {}
     user_session = request.session.get('user')              # 로그인 체크
     if user_session:
         user = User.objects.get(pk=user_session)
+        notice = Notice.objects.get(pk=pk)
+        res_data["title"] = notice.movieNm
+        res_data["review"] = notice.review
+        res_data["star"] = notice.star
+        res_data["writer"] = notice.username
+        res_data["writed_date"] = notice.writed_date
+
+        movie = MovieList.objects.get(movieNm=notice.movieNm)
+        res_data["genre"] = movie.genreAlt
+        movieD = MovieDetailList.objects.get(movieNm=notice.movieNm)
+        res_data["Syear"] = movieD.prdtYear
+        res_data["Oyear"] = movieD.openDt
+        res_data["time"] = movieD.showTm
+        res_data["age"] = movieD.audits
 
         if request.method == 'GET':
             return render(request, 'detail.html', res_data)

@@ -12,8 +12,9 @@ html,body{
     background-repeat: no-repeat;
 }
 
+
 .main-text{
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     position: absolute;
     top: 200px;
     right: 80px;
@@ -31,9 +32,9 @@ html,body{
 
 .btn{
     border: none;
-    width: 230px;
+    width: 270px;
     height: 40px;
-    background-color: #b2f2bb;
+    background-color: #ece6cc;
     border-radius: 5px;
     margin-top: 60px;
     margin-left: 70px;
@@ -44,5 +45,6 @@ html,body{
 
 .btn:hover{
     transform: scale(1.2);
-    background-color: #51cf66;
+    background-color: #efc593;
+    font-weight: bold;
 }
