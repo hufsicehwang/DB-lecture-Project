@@ -16,7 +16,7 @@
                 <div class="searchBox">
 
                     <input type="input" class="form__field" placeholder="제목" name="name" id='name' required />
-                    <div class="searchBtn" onclick="onClickSearch()"></div>
+                    <div class="button-17" onclick="onClickSearch()">검색</div>
                     <label for="name" class="form__label">영화 검색</label>
                 </div>
                 <div class="contents">
@@ -62,9 +62,29 @@
                     <input type="submit" value="리뷰 작성" class="review_send_btn">
                 </div>
             </form>
+            <div id ="modal"class="details-modal" style="display: none;">
+                <div class="details-modal-title">
+                    <h1>My details modal</h1>
+                    <div class="details-modal-close" onclick="onclickCloseModal()">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none" style="cursor: pointer; z-index: 9999;">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.7071 1.70711C14.0976 1.31658 14.0976 0.683417 13.7071 0.292893C13.3166 -0.0976311 12.6834 -0.0976311 12.2929 0.292893L7 5.58579L1.70711 0.292893C1.31658 -0.0976311 0.683417 -0.0976311 0.292893 0.292893C-0.0976311 0.683417 -0.0976311 1.31658 0.292893 1.70711L5.58579 7L0.292893 12.2929C-0.0976311 12.6834 -0.0976311 13.3166 0.292893 13.7071C0.683417 14.0976 1.31658 14.0976 1.70711 13.7071L7 8.41421L12.2929 13.7071C12.6834 14.0976 13.3166 14.0976 13.7071 13.7071C14.0976 13.3166 14.0976 12.6834 13.7071 12.2929L8.41421 7L13.7071 1.70711Z" fill="black" />
+                      </svg>
+                    </div>
+                </div>
+                <div id="detail_modal" class="details-modal-content">
+                  
+                </div>
+              </div>
     </body>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
         includeHTML();
+        document.addEventListener('keydown', function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+            };
+            }, true);
+        var checkMovieNm = false
         //기본값 true
         document.getElementById('open').checked = true;
         document.getElementById("public").style.border="1px solid rgb(32, 201, 151)"
@@ -90,37 +110,46 @@
             document.getElementById("public").style.color="rgb(134, 142, 150)"
         
         }
-        var user = document.getElementById('user');
-        user.addEventListener('mouseover',function(){
-            document.getElementById('user-text').style.display='block';
-        })
-        user.addEventListener('mouseout',function(){
-            document.getElementById('user-text').style.display='none';
-        })
+        var list = []
         function onClickSearch(){
-            const url = "/home/review/search";
-            fetch(url, {
-                method : "POST",
-                body: document.getElementById("name").value,
-                // -- or --
-                // body : JSON.stringify({
-                    // user : document.getElementById('user').value,
-                    // ...
-                // })
-            }).then(
-                response => {
-             
-        
-              
-                    response.text().then(text=> {
-                        
-                        console.log(text)
-                    })
-              
-                } // .json(), etc.
-                // same as function(response) {return response.text();}
-            )
-       
+            const url = "/home/search/";
+            $.ajax({                       
+                type: 'POST',
+                url: url,
+                data: { 'movieNm' : document.getElementById("name").value,
+                },
+                success: function (data){
+                    list = data['id']
+                    console.log(data['id'])
+                    document.getElementById("modal").style.display="block"
+                    // document.getElementById("modal_p").innerHTML=JSON.stringify(list)
+                    var tagfield  = document.getElementById("detail_modal")
+                    // genreAlt: "드라마"
+                    // id: 66864
+                    // movieCd: "0"
+                    // movieNm: "빨간구두"
+                    // nationAlt: ""
+                    // prdtYear: "2004"
+                    console.log(list.length)
+                    for(i=0; i<list.length;i++){
+                        var p = document.createElement("p")
+                        p.innerHTML = `${list[i]["movieNm"]}, 장르 : ${list[i]["genreAlt"]}, 개봉년도 : ${list[i]["prdtYear"]}, 개봉나라 : ${list[i]["nationAlt"]}`
+                        tagfield.prepend(p)
+                        p.onclick = onClickModalClose
+                    }
+
+                }
+            })
+        }
+        function onClickModalClose() {
+            console.log("체크되었습니다")
+            checkMovieNm=true
+            document.getElementById("modal").style.display="none"
+            
+        }
+        function onclickCloseModal(){
+            console.log("aaa")
+            document.getElementById("modal").style.display="none"
         }
     </script>
 </html>

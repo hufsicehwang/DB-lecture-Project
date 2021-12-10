@@ -9,5 +9,5 @@ urlpatterns = [
     path('mylist/',views.mylist),
     path('list/',views.list),
     path('detail/<int:pk>',views.detail),
-    path('review/search',views.searchMovie, name='home')
+    path('search/',views.searchMovie, name='home')
 ]
