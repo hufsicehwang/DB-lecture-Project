@@ -28,7 +28,7 @@ def signUp(request):
             except User.DoesNotExist:   # 아이디가 없어서 DoesNotExist이면 저장한다.
                 user = User(email=email, username=username, password=make_password(password))
                 user.save()
-                return redirect('/login')
+                return redirect('/main/login')
             if(user):
                 res_data['error'] = '존재하는 Email 입니다.'
                 return render(request, 'signUp.html', res_data)
@@ -58,8 +58,13 @@ def login(request):
             if check_password(password, user_password):
                 request.session['user'] = user.id  # session 변수에 저장
                 request.session['user_email'] = user.email  # session 변수에 저장
-                return redirect('/home/review')
+                return redirect('/home')
             else:
                 res_data['error'] = '비밀번호가 틀렸습니다.'
                 return render(request, 'login.html', res_data)
         return render(request, 'login.html', res_data)
+
+def logout(request):
+    if request.session.get('user'):
+        del(request.session['user'])
+    return redirect('/main/login')

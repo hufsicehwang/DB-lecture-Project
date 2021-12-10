@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Note</title>
+    <link rel="stylesheet" href="/static/assets/css/header.css?after?after?after">
+    <link rel="stylesheet" href="/static/assets/css/home.css?after?after">
+    <script src="/static/js/includeHTML.js"></script>
+</head>
+<body>
+    <header include-html="/static/html/header.html?after"></header>
+    <div class="container">
+        <div class="main-text">
+            <span>8만개 이상의 영화 Data Record 보유!</span><br><br>
+            <span class="main-text2">감상한 영화에 대해서 기록을 남기고</span><br><br>
+            <span>나만의 Movie Note를 만들어 보세요!</span>
+        </div>
+        <div class="main-btn">
+            <button class="btn btn1" onclick="location.href='/home/review'">나만의 Movie Note 작성하기</button>
+            <button class="btn btn2" onclick="location.href='/home/list'">다른 사람들의 Movie Note 둘러보기</button>
+        </div>
+    </div>
+    <script>
+        includeHTML();
+    </script>
+</body>
+</html>

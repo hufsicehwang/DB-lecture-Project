@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Note</title>
+    <link rel="stylesheet" href="/static/assets/css/header.css?after">
+    <link rel="stylesheet" href="/static/assets/css/detail.css?after?after?after">
+    <script src="/static/js/includeHTML.js"></script>
+</head>
+<body>
+    <header include-html="/static/html/header.html?after"></header>
+    <div class="outer">
+        <!-- <div class="detail-wapper"> -->
+            <div class="detail">
+                <div class="title">{{title}}</div>
+                <div class="data1">
+                    <div class="star"><span class="t1">평점:</span> ★★★☆☆</div>
+                    <div class="review"><span class="t1">감상평:</span> <span class="t2">{{review}}</span></div>
+                    <div class="writer"><span class="t1">작성자:</span> <span class="t2">{{writer}}</span></div>
+                    <div class="date"><span class="t1">작성 날짜:</span> <span class="t2">{{writed_date|date:'Y.n.j A g:i'}}</span></div>
+                </div>
+                <div class="data2">
+                    <div class="genre"><span class="t1">장르:</span> <span class="t2">{{genre}}</span></div>
+                    <div class="time"><span class="t1">런타임:</span><span class="t2">{{time}}분</span></div>
+                    <div class="age"><span class="t1">관람등급: </span><span class="t2">{{age}}</span></div>
+                    <div class="syear"><span class="t1">제작년도:</span> <span class="t2">{{Syear}}</span></div>
+                    <div class="oyear"><span class="t1">개봉년도:</span> <span class="t2">{{Oyear}}</span></div>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+    <script>
+        includeHTML();
+    </script>
+</body>
+</html>

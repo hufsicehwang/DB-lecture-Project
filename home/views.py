@@ -1,11 +1,13 @@
 from typing import Generator
 from typing_extensions import Required
 from django.http.request import HttpRequest
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from urllib.request import urlopen , Request
+from main.models import User
 from .models import *
 import re
 import json
+from django.core.paginator import Paginator, EmptyPage
 import simplejson
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
@@ -55,6 +57,85 @@ def data_insert(request):
                 detail_movie.save()
                 
         return render(request,'review.html')
+
+
+
+
+def home(request):
+    res_data = {}
+    user_session = request.session.get('user')              # 로그인 체크
+    if user_session:
+        user = User.objects.get(pk=user_session)
+
+        if request.method == 'GET':
+            return render(request, 'home.html', res_data)
+        elif request.method == 'POST':
+            return render(request, 'home.html', res_data)
+    else:
+        return redirect('/main/login')
+
+def list(request):
+    res_data = {}
+    user_session = request.session.get('user')              # 로그인 체크
+    if user_session:
+        user = User.objects.get(pk=user_session)
+
+        page = request.GET.get("page",1)
+        all_list = Notice.objects.all().order_by('-writed_date')
+        paginator = Paginator(all_list,100,orphans=5)
+        try:
+            notice = paginator.page(int(page))
+        except EmptyPage:
+            pass
+        res_data["page"] = notice
+
+        if request.method == 'GET':
+            return render(request, 'list.html', res_data)
+        elif request.method == 'POST':
+            return render(request, 'list.html', res_data)
+    else:
+        return redirect('/main/login')
+
+def mylist(request):
+    res_data = {}
+    user_session = request.session.get('user')              # 로그인 체크
+    if user_session:
+        user = User.objects.get(pk=user_session)
+
+        if request.method == 'GET':
+            return render(request, 'list.html', res_data)
+        elif request.method == 'POST':
+            return render(request, 'list.html', res_data)
+    else:
+        return redirect('/main/login')
+
+def detail(request,pk):
+    res_data = {}
+    user_session = request.session.get('user')              # 로그인 체크
+    if user_session:
+        user = User.objects.get(pk=user_session)
+        notice = Notice.objects.get(pk=pk)
+        res_data["title"] = notice.movieNm
+        res_data["review"] = notice.review
+        res_data["star"] = notice.star
+        res_data["writer"] = notice.username
+        res_data["writed_date"] = notice.writed_date
+
+        movie = MovieList.objects.get(movieNm=notice.movieNm)
+        res_data["genre"] = movie.genreAlt
+        movieD = MovieDetailList.objects.get(movieNm=notice.movieNm)
+        res_data["Syear"] = movieD.prdtYear
+        res_data["Oyear"] = movieD.openDt
+        res_data["time"] = movieD.showTm
+        res_data["age"] = movieD.audits
+
+        if request.method == 'GET':
+            return render(request, 'detail.html', res_data)
+        elif request.method == 'POST':
+            return render(request, 'home.html', res_data)
+    else:
+        return redirect('/main/login')
+
 @csrf_exempt
 def searchMovie(request):
     if request.method=="POST":
