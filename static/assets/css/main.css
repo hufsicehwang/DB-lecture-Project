@@ -74,7 +74,7 @@ html,body{
 }
 form input:focus{
     outline: none;
-    box-shadow: 0 0  5px #2b8a3e;
+    box-shadow: 0 0  5px #036383;
 }
 form input:focus::placeholder{  /*  클릭시 text 없어짐 */
     color: transparent;
@@ -83,14 +83,14 @@ form input:focus::placeholder{  /*  클릭시 text 없어짐 */
     border: none;
     width: 210px;
     height: 40px;
-    background-color: #b2f2bb;
+    background-color: #add8e6;
     margin-top: 60px;
     margin-left: 35px;
     box-shadow: 0 0  3px rgba(0,0,0, 0.7);
 }
 
 form button:hover{
-    background-color: #51cf66;
+    background-color: #55d2fc;
 }
 
 

@@ -120,10 +120,19 @@ def mylist(request):
     if user_session:
         user = User.objects.get(pk=user_session)
 
+        page = request.GET.get("page",1)
+        all_list = MovieNote.objects.filter(email =user.email).order_by('-writed_date')
+        paginator = Paginator(all_list,100,orphans=5)
+        try:
+            notice = paginator.page(int(page))
+        except EmptyPage:
+            pass
+        res_data["page"] = notice
+        res_data["username"] = user.username
         if request.method == 'GET':
-            return render(request, 'list.html', res_data)
+            return render(request, 'mylist.html', res_data)
         elif request.method == 'POST':
-            return render(request, 'list.html', res_data)
+            return render(request, 'mylist.html', res_data)
     else:
         return redirect('/main/login')
 
@@ -133,6 +142,7 @@ def detail(request,pk):
     if user_session:
         user = User.objects.get(pk=user_session)
         notice = Notice.objects.get(pk=pk)
+        
         res_data["title"] = notice.movieNm
         res_data["review"] = notice.review
         res_data["star"] = notice.star
