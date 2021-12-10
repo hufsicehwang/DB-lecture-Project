@@ -13,6 +13,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.http import HttpResponse,JsonResponse
 def review(request):
+    user_session = request.session.get('user')
+    user = User.objects.get(pk = user_session)  
     if request.method =="GET":
         # print(detail_getJson)
         # genres = MovieDetailList.objects.get(id=2)
@@ -39,10 +41,10 @@ def review(request):
         rating = request.POST.get('rating')
         print(name, open1, nonopen1, message,rating)
         if open1:
-            movienote = MovieNote(email="junyoung",movieNm = name,review = message,star=rating,open=open1)
+            movienote = MovieNote(email=user.email,movieNm = name,review = message,star=rating,open=open1)
             movienote.save()
         else:
-           movienote = MovieNote(email="junyoung",movieNm = name,review = message,star=rating,open=nonopen1)
+           movienote = MovieNote(email=user.email,movieNm = name,review = message,star=rating,open=nonopen1)
            movienote.save()
         #movienote =  MovieNote(movieNm = name,)
         
