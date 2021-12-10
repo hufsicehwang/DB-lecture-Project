@@ -23,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-kw(4mk8g&358!k9u#+y6yc!e2fi$x9psr@e&b!tgo00qifnkv7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS=["movieApp.eba-2jxffzgn.ap-northeast-2.elasticbeanstalk.com"]
+DEBUG = False
+ALLOWED_HOSTS=["*"]
 
 # Application definition
 
