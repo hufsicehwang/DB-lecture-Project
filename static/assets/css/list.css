@@ -13,6 +13,7 @@ html, body{
     display: grid;
     justify-content: center;
     align-items: center;
+    background-color: #fbceb1;
 }
 
 .wapper-text img{

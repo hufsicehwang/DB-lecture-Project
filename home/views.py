@@ -43,6 +43,8 @@ def review(request):
         if open1:
             movienote = MovieNote(email=user.email,movieNm = name,review = message,star=rating,open=open1)
             movienote.save()
+            notice = Notice(username =user.username, movieNm = name,review = message,star=rating)
+            notice.save()
         else:
            movienote = MovieNote(email=user.email,movieNm = name,review = message,star=rating,open=nonopen1)
            movienote.save()
@@ -93,26 +95,26 @@ def home(request):
 
 def list(request):
     res_data = {}
-    # user_session = "aa"
-    # print(request.session.get('user')  )            # 로그인 체크
-    # if user_session:
-    #     user = User.objects.get(pk=user_session)
 
-    #     page = request.GET.get("page",1)
-    #     all_list = Notice.objects.all().order_by('-writed_date')
-    #     paginator = Paginator(all_list,100,orphans=5)
-    #     try:
-    #         notice = paginator.page(int(page))
-    #     except EmptyPage:
-    #         pass
-    #     res_data["page"] = notice
+    user_session=request.session.get('user')           # 로그인 체크
+    if user_session:
+        user = User.objects.get(pk=user_session)
 
-    #     if request.method == 'GET':
-    #         return render(request, 'list.html', res_data)
-    #     elif request.method == 'POST':
-    #         return render(request, 'list.html', res_data)
-    # else:
-    #     return redirect('/main/login')
+        page = request.GET.get("page",1)
+        all_list = Notice.objects.all().order_by('-writed_date')
+        paginator = Paginator(all_list,100,orphans=5)
+        try:
+            notice = paginator.page(int(page))
+        except EmptyPage:
+            pass
+        res_data["page"] = notice
+
+        if request.method == 'GET':
+            return render(request, 'list.html', res_data)
+        elif request.method == 'POST':
+            return render(request, 'list.html', res_data)
+    else:
+        return redirect('/main/login')
 
 def mylist(request):
     res_data = {}
