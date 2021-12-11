@@ -1,0 +1,105 @@
+/* START SIGN UP */
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+}
+.main{
+    width: 100%;
+    height: 100%;
+    background-image: url(/static/assets/image/signUp.jpg);  
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.main2{
+    width: 100%;
+    height: 100%;
+    background-image: url(/static/assets/image/login.jpg);  
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.signUp{
+    width: 500px;
+    height: 600px;
+    background-color: white;
+    position: absolute;
+    right: 10%;
+    border-radius: 5px;
+    box-shadow: 0 0 20px #000;
+}
+.signUp-text{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo-section img{
+    width:150px;
+    height:150px;
+}
+.signUp-text span{
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.signUp-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.input-wapper{
+    display: inline-grid;
+}
+.signUp-form input{
+    border: none;
+    width: 280px;
+    height: 40px;
+    /* border-bottom: 2px solid #adb5bd; */
+    background-color: #f1f3f5;
+    border-radius: 3px;
+    font-size: 15px;
+    margin-top: 30px;
+    box-shadow: 0 0  5px rgba(0,0,0, 0.7);
+}
+form input:focus{
+    outline: none;
+    box-shadow: 0 0  5px #036383;
+}
+form input:focus::placeholder{  /*  클릭시 text 없어짐 */
+    color: transparent;
+}
+.signUp-form button{
+    border: none;
+    width: 210px;
+    height: 40px;
+    background-color: #add8e6;
+    margin-top: 60px;
+    margin-left: 35px;
+    box-shadow: 0 0  3px rgba(0,0,0, 0.7);
+}
+
+form button:hover{
+    background-color: #55d2fc;
+}
+
+
+input::-webkit-input-placeholder {
+    text-align: center;
+    color: #000;
+}
+
+.to-login{
+    margin:70px 0 0 45px;
+}
+/* END SIGN UP */
