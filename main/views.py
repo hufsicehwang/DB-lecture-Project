@@ -26,7 +26,7 @@ def signUp(request):
             try:
                 user = User.objects.get(email=email)    # 아이디가 있는지 확인 해보고
             except User.DoesNotExist:   # 아이디가 없어서 DoesNotExist이면 저장한다.
-                user = User(email=email, username=username, password=make_password(password))
+                user = User(email=email, username=username, password=password)
                 user.save()
                 return redirect('/main/login')
             if(user):
@@ -55,7 +55,7 @@ def login(request):
                 return render(request, 'login.html', res_data)
 
             user_password = user.password
-            if check_password(password, user_password):
+            if password == user_password:
                 request.session['user'] = user.id  # session 변수에 저장
                 request.session['user_email'] = user.email  # session 변수에 저장
                 return redirect('/home')
