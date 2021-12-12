@@ -153,8 +153,8 @@ def detail(request,pk):
 
         movie = MovieList.objects.get(movieNm=notice.movieNm)
         res_data["genre"] = movie.genreAlt
+        res_data["nation"] = movie.nationAlt
         movieD = MovieDetailList.objects.get(movieNm=notice.movieNm)
-        res_data["Syear"] = movieD.prdtYear
         res_data["Oyear"] = movieD.openDt
         res_data["time"] = movieD.showTm
         res_data["age"] = movieD.audits
