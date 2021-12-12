@@ -5,7 +5,11 @@
         <link rel="stylesheet" href="/static/assets/css/header.css">
         <link rel="stylesheet" href="/static/css/review.css?after?after">
         <script src="/static/js/includeHTML.js"></script>
-        
+        <style>
+            html,body{
+                margin: 0;
+            }
+        </style>
     </head>
     <body>
         <header include-html="/static/html/header.html?after"></header>
@@ -19,11 +23,12 @@
                     <input type="input" class="form__field" placeholder="제목" name="name" id='name' required />
                     <div class="button-17" onclick="onClickSearch()">검색</div>
                     <label for="name" class="form__label">영화 검색</label>
-                    <div class="sub-text" style="color: gray;
-                    font-size: 12px;
-                    margin: 0 auto;
-                    text-align: center;">영화 제목이 검색이 되지 않으면 부분적인 단어의 형태로 검색해 주세요. </div>
                 </div>
+                <div class="sub-text" style="color: gray;
+
+                font-size: 12px;
+                margin-top:1rem;
+                text-align: center;">영화 제목이 검색이 되지 않으면 부분적인 단어의 형태로 검색해 주세요. </div>
                 <div class="contents">
                     <div class="contents_btn" id="public" onclick="onClick1()">
                         <svg width="24" height="24" fill="none" viewBox="0 0 24 24">

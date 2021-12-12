@@ -138,12 +138,12 @@ def mylist(request):
     else:
         return redirect('/main/login')
 
-def detail(request,pk):
+def detail(request,name):
     res_data = {}
     user_session = request.session.get('user')              # 로그인 체크
     if user_session:
         user = User.objects.get(pk=user_session)
-        notice = Notice.objects.get(pk=pk)
+        notice = Notice.objects.get(movieNm=name)
         
         res_data["title"] = notice.movieNm
         res_data["review"] = notice.review
