@@ -143,24 +143,23 @@ def detail(request,name):
     user_session = request.session.get('user')              # 로그인 체크
     if user_session:
         user = User.objects.get(pk=user_session)
-        notice = Notice.objects.get(movieNm=name)
+        notice = MovieNote.objects.get(movieNm=name)
         
         res_data["title"] = notice.movieNm
         res_data["review"] = notice.review
         res_data["star"] = notice.star
-        res_data["writer"] = notice.username
+        res_data["writer"] = User.objects.get(email=notice.email).username
         res_data["writed_date"] = notice.writed_date
 
-        movie = MovieList.objects.get(movieNm=notice.movieNm)
+        movie = MovieList.objects.filter(movieNm=notice.movieNm).first()
         res_data["genre"] = movie.genreAlt
         res_data["nation"] = movie.nationAlt
-        movieD = MovieDetailList.objects.get(movieNm=notice.movieNm)
+        movieD = MovieDetailList.objects.filter(movieNm=notice.movieNm).first()
         res_data["Oyear"] = movieD.openDt
         res_data["time"] = movieD.showTm
         res_data["age"] = movieD.audits
-        # print(res_data)
+
         if request.method == 'GET':
-            print(res_data)
             return render(request, 'detail.html', res_data)
         elif request.method == 'POST':
             return render(request, 'home.html', res_data)
@@ -176,8 +175,7 @@ def searchMovie(request):
         print(req)
         my_response = MovieList.objects.filter(movieNm=req).values()
         print(len(my_response))
-        for i in range(0,len(my_response)):
-            res_data['id'].append(my_response[i])
+        res_data['id'].append(my_response[0])
         # res_data['id'] = my_response[0]
         # print(simplejson.dumps(my_response))
        
