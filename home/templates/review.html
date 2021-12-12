@@ -13,7 +13,8 @@
         <div class="form__group field">
             <form action="" method="post">
                 {% csrf_token %}
-                <div class="searchBox">
+                <div class="searchBox" style="display:flex; 
+                align-items: center;">
 
                     <input type="input" class="form__field" placeholder="제목" name="name" id='name' required />
                     <div class="button-17" onclick="onClickSearch()">검색</div>
