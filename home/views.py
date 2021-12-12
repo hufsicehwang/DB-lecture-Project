@@ -158,8 +158,9 @@ def detail(request,name):
         res_data["Oyear"] = movieD.openDt
         res_data["time"] = movieD.showTm
         res_data["age"] = movieD.audits
-
+        # print(res_data)
         if request.method == 'GET':
+            print(res_data)
             return render(request, 'detail.html', res_data)
         elif request.method == 'POST':
             return render(request, 'home.html', res_data)
@@ -167,9 +168,9 @@ def detail(request,name):
         return redirect('/main/login')
 from django.core import serializers
 @csrf_exempt
-
 def searchMovie(request):
     res_data={"id":[]}
+    print(request)
     if request.method=="POST":
         req = request.POST.get("movieNm")
         print(req)
