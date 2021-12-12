@@ -4,6 +4,7 @@ html, body{
 }
 .searchBox {
   display:flex;
+  align-items: center;
 }
 .searchBtn{
   width: 3rem;
