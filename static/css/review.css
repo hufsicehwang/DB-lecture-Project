@@ -3,7 +3,7 @@ html, body{
   overflow-x: hidden;
 }
 .searchBox {
-  display:flex;
+  display:flex; 
   align-items: center;
 }
 .searchBtn{
