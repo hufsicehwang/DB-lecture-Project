@@ -123,39 +123,44 @@
         var list = []
         function onClickSearch(){
             const url = "/home/search/";
-            $.ajax({                       
-                type: 'POST',
-                url: url,
-                data: { 'movieNm' : document.getElementById("name").value,
-                },
-                success: function (data){
-                    if(data['exist']=="exist"){
-                        alert("해당 영화의 리뷰가 존재 합니다. 다른 영화를 선택해 주세요.")
-                    }
-                    else{
+            if(checkMovieNm) {
 
-                        list = data['id']
-                        console.log(data['id'])
-                        document.getElementById("modal").style.display="block"
-                        // document.getElementById("modal_p").innerHTML=JSON.stringify(list)
-                        var tagfield  = document.getElementById("detail_modal")
-                        // genreAlt: "드라마"
-                        // id: 66864
-                        // movieCd: "0"
-                        // movieNm: "빨간구두"
-                        // nationAlt: ""
-                        // prdtYear: "2004"
-                        console.log(list.length)
-                        for(i=0; i<list.length;i++){
-                            var p = document.createElement("p")
-                            p.innerHTML = `${list[i]["movieNm"]}, 장르 : ${list[i]["genreAlt"]}, 개봉년도 : ${list[i]["prdtYear"]}, 개봉나라 : ${list[i]["nationAlt"]}`
-                            tagfield.prepend(p)
-                            p.onclick = onClickModalClose
+                $.ajax({                       
+                    type: 'POST',
+                    url: url,
+                    data: { 'movieNm' : document.getElementById("name").value,
+                    },
+                    success: function (data){
+                        if(data['exist']=="exist"){
+                            alert("해당 영화의 리뷰가 존재 합니다. 다른 영화를 선택해 주세요.")
                         }
+                        else{
+    
+                            list = data['id']
+                            console.log(data['id'])
+                            document.getElementById("modal").style.display="block"
+                            // document.getElementById("modal_p").innerHTML=JSON.stringify(list)
+                            var tagfield  = document.getElementById("detail_modal")
+                            // genreAlt: "드라마"
+                            // id: 66864
+                            // movieCd: "0"
+                            // movieNm: "빨간구두"
+                            // nationAlt: ""
+                            // prdtYear: "2004"
+                            console.log(list.length)
+                            for(i=0; i<list.length;i++){
+                                var p = document.createElement("p")
+                                p.innerHTML = `${list[i]["movieNm"]}, 장르 : ${list[i]["genreAlt"]}, 개봉년도 : ${list[i]["prdtYear"]}, 개봉나라 : ${list[i]["nationAlt"]}`
+                                tagfield.prepend(p)
+                                p.onclick = onClickModalClose
+                            }
+                        }
+    
                     }
-
-                }
-            })
+                })
+            }else {
+                alert("영화를 검색해주세요")
+            }
         }
         function onClickModalClose() {
             console.log("체크되었습니다")
