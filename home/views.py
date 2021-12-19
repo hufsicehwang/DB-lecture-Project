@@ -167,17 +167,19 @@ def detail(request,name):
         return redirect('/main/login')
 from django.core import serializers
 @csrf_exempt
-def searchMovie(request):
+def searchMovie(request):   # movieNote 작성 시 영화 검색 하는 함수
     res_data={"id":[]}
     print(request)
     if request.method=="POST":
         req = request.POST.get("movieNm")
-        print(req)
-        my_response = MovieList.objects.filter(movieNm=req).values()
-        print(len(my_response))
-        res_data['id'].append(my_response[0])
-        # res_data['id'] = my_response[0]
-        # print(simplejson.dumps(my_response))
-       
-        return JsonResponse(res_data)
+        try:
+            movieNote = MovieNote.objects.get(movieNm = req)
+        except MovieNote.DoesNotExist:
+            my_response = MovieList.objects.filter(movieNm=req).values()
+            print(len(my_response))
+            res_data['id'].append(my_response[0])    
+            return JsonResponse(res_data)
+        if (movieNote):
+            res_data['exist'] = "exist"
+            return JsonResponse(res_data)
         
