@@ -138,12 +138,12 @@ def mylist(request):
     else:
         return redirect('/main/login')
 
-def detail(request,name): # list에서 선택된 item의 세부 사항을 보여주는 함수
+def detail(request,name):
     res_data = {}
     user_session = request.session.get('user')              # 로그인 체크
     if user_session:
         user = User.objects.get(pk=user_session)
-        notice = MovieNote.objects.get(movieNm=name, email = user.email)
+        notice = MovieNote.objects.get(movieNm=name)
         
         res_data["title"] = notice.movieNm
         res_data["review"] = notice.review
@@ -151,13 +151,13 @@ def detail(request,name): # list에서 선택된 item의 세부 사항을 보여
         res_data["writer"] = User.objects.get(email=notice.email).username
         res_data["writed_date"] = notice.writed_date
 
-        movie = MovieList.objects.filter(movieNm=notice.movieNm).first() # 클릭한 item의 기본정보 추출을 위해서 해당 영화 row를 반환
+        movie = MovieList.objects.filter(movieNm=notice.movieNm).first()
         res_data["genre"] = movie.genreAlt
         res_data["nation"] = movie.nationAlt
-        movieD = MovieDetailList.objects.filter(movieNm=notice.movieNm).first() # 클릭한 item의 상세정보 추출을 위해서 해당 영화 row를 반환
+        movieD = MovieDetailList.objects.filter(movieNm=notice.movieNm).first()
         res_data["Oyear"] = movieD.openDt
         res_data["time"] = movieD.showTm
-        res_data["age"] = movieD.audits                                 # res_data라는 딕션어리 변수로 html 파일에 반환
+        res_data["age"] = movieD.audits
 
         if request.method == 'GET':
             return render(request, 'detail.html', res_data)
