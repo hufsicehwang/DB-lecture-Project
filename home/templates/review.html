@@ -130,7 +130,7 @@
         var list = []
         function onClickSearch(){
             const url = "/home/search/";
-            if(checkMovieNm) {
+
 
                 $.ajax({                       
                     type: 'POST',
@@ -165,9 +165,7 @@
     
                     }
                 })
-            }else {
-                alert("영화를 검색해주세요")
-            }
+            
         }
         function onClickModalClose() {
             console.log("체크되었습니다")
