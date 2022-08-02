@@ -8,7 +8,13 @@ from .models import *
 import re
 import json
 from django.core.paginator import Paginator, EmptyPage
+import simplejson
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from django.http import HttpResponse,JsonResponse
 def review(request):
+    user_session = request.session.get('user')
+    user = User.objects.get(pk = user_session)  
     if request.method =="GET":
         # print(detail_getJson)
         # genres = MovieDetailList.objects.get(id=2)
@@ -20,14 +26,31 @@ def review(request):
         # gg = re.sub("\[|\]|\{|\}|\'|\:|\ |\,","",genres.genres).split("genreNm")
         # print(gg[1])
         return render(request,'review.html')
+    #      email = models.EmailField(max_length=128, verbose_name="작성자")
+    # movieNm = models.TextField(max_length=128,verbose_name="movieNmEn")#제목
+    # review = models.TextField(max_length=1024, verbose_name="리뷰")
+    # star = models.IntegerField(verbose_name="별점")
+    # open = models.CharField(max_length=10, verbose_name="게시판 공개여부")
+    # writed_date = models.DateTimeField(auto_now_add=True, verbose_name='작성 날짜')
     elif request.method=="POST":
-        print(request.POST)
+     
         name = request.POST.get('name')
-        open1 = request.POST.getlist('open')
-        nonopen1 = request.POST.getlist('non-open')
+        open1 = ''.join(request.POST.getlist('open'))
+        nonopen1 = ''.join(request.POST.getlist('non-open'))
         message = request.POST.get('message')
-        print(name, open1, nonopen1, message,"!!!!!!!!!")
-        return render(request,'review.html')
+        rating = request.POST.get('rating')
+        print(name, open1, nonopen1, message,rating)
+        if open1:
+            movienote = MovieNote(email=user.email,movieNm = name,review = message,star=rating,open=open1)
+            movienote.save()
+            notice = Notice(username =user.username, movieNm = name,review = message,star=rating)
+            notice.save()
+        else:
+           movienote = MovieNote(email=user.email,movieNm = name,review = message,star=rating,open=nonopen1)
+           movienote.save()
+        #movienote =  MovieNote(movieNm = name,)
+        
+        return redirect('/home/mylist')
 def data_insert(request):
     if request.method == "GET":
         url = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=002ee3abcc24ccf55fe7d7c47c76894f&itemPerPage=100"
@@ -56,6 +79,7 @@ def data_insert(request):
 
 
 
+
 def home(request):
     res_data = {}
     user_session = request.session.get('user')              # 로그인 체크
@@ -71,7 +95,8 @@ def home(request):
 
 def list(request):
     res_data = {}
-    user_session = request.session.get('user')              # 로그인 체크
+
+    user_session=request.session.get('user')           # 로그인 체크
     if user_session:
         user = User.objects.get(pk=user_session)
 
@@ -113,23 +138,23 @@ def mylist(request):
     else:
         return redirect('/main/login')
 
-def detail(request,pk):
+def detail(request,name):
     res_data = {}
     user_session = request.session.get('user')              # 로그인 체크
     if user_session:
         user = User.objects.get(pk=user_session)
-        notice = Notice.objects.get(pk=pk)
+        notice = MovieNote.objects.get(movieNm=name)
         
         res_data["title"] = notice.movieNm
         res_data["review"] = notice.review
         res_data["star"] = notice.star
-        res_data["writer"] = notice.username
+        res_data["writer"] = User.objects.get(email=notice.email).username
         res_data["writed_date"] = notice.writed_date
 
-        movie = MovieList.objects.get(movieNm=notice.movieNm)
+        movie = MovieList.objects.filter(movieNm=notice.movieNm).first()
         res_data["genre"] = movie.genreAlt
-        movieD = MovieDetailList.objects.get(movieNm=notice.movieNm)
-        res_data["Syear"] = movieD.prdtYear
+        res_data["nation"] = movie.nationAlt
+        movieD = MovieDetailList.objects.filter(movieNm=notice.movieNm).first()
         res_data["Oyear"] = movieD.openDt
         res_data["time"] = movieD.showTm
         res_data["age"] = movieD.audits
@@ -140,5 +165,21 @@ def detail(request,pk):
             return render(request, 'home.html', res_data)
     else:
         return redirect('/main/login')
-
+from django.core import serializers
+@csrf_exempt
+def searchMovie(request):   # movieNote 작성 시 영화 검색 하는 함수
+    res_data={"id":[]}
+    print(request)
+    if request.method=="POST":
+        req = request.POST.get("movieNm")
+        try:
+            movieNote = MovieNote.objects.get(movieNm = req)
+        except MovieNote.DoesNotExist:
+            my_response = MovieList.objects.filter(movieNm=req).values()
+            print(len(my_response))
+            res_data['id'].append(my_response[0])    
+            return JsonResponse(res_data)
+        if (movieNote):
+            res_data['exist'] = "exist"
+            return JsonResponse(res_data)
         

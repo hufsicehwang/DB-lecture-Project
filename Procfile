@@ -1,0 +1,1 @@
+web: gunicorn MovieNote.wsgi --log-file -

@@ -1,5 +1,18 @@
+
 html, body{
   overflow-x: hidden;
+}
+.searchBox {
+  display:flex; 
+  align-items: center;
+}
+.searchBtn{
+  width: 3rem;
+  height: 3rem;
+  background-color: rebeccapurple;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .form__group {
@@ -101,7 +114,7 @@ html, body{
 .contents{
   
     display: flex;
-    margin: 2rem auto;
+    margin: 2.5rem auto;
     width: 80%;
 }
 .contents_btn{
@@ -176,3 +189,222 @@ html, body{
 .red {
     background-color: rgb(32, 201, 151);
 }
+.star-rating {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  justify-content: space-around;
+  padding: 0 0.2em;
+  text-align: center;
+  width: 5em;
+}
+.star{
+  padding: 0 1rem;
+}
+.star-rating input {
+  display: none;
+}
+ 
+.star-rating label {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2.3px;
+  -webkit-text-stroke-color: #2b2a29;
+  cursor: pointer;
+}
+ 
+.star-rating :checked ~ label {
+  -webkit-text-fill-color: gold;
+}
+ 
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  -webkit-text-fill-color: #fff58c;
+}
+
+/* CSS */
+.button-17 {
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border-radius: 24px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: #3c4043;
+  width: 6rem;
+  cursor: pointer;
+  fill: currentcolor;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: .25px;
+  line-height: normal;
+  max-width: 100%;
+  overflow: visible;
+  padding: 2px 24px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+  will-change: transform,opacity;
+  z-index: 0;
+}
+
+.button-17:hover {
+  background: #F6F9FE;
+  color: #174ea6;
+}
+
+.button-17:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.button-17:focus {
+  outline: none;
+  border: 2px solid #4285f4;
+}
+
+.button-17:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+}
+
+.button-17:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+}
+
+.button-17:disabled {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+
+
+.button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: #16a34a;
+  border-radius: 0.25em;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 500;
+  height: 3em;
+  line-height: 3em;
+  padding: 0 1em;
+}
+.button:hover {
+  background-color: #17ac4e;
+}
+
+
+
+
+
+.details-modal {
+  background: #ffffff;
+  border-radius: 0.5em;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  left: 50%;
+  max-width: 90%;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 30em;
+  text-align: left;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+.details-modal .details-modal-close {
+  align-items: center;
+  color: #111827;
+  display: flex;
+  height: 4.5em;
+  justify-content: center;
+
+  position: absolute;
+  right: 0;
+  top: 0;
+ 
+  width: 4.5em;
+  cursor: pointer;
+}
+.details-modal .details-modal-close svg {
+  display: block;
+  
+}
+.details-modal .details-modal-title {
+  color: #111827;
+  padding: 1.5em 2em;
+  pointer-events: all;
+  position: relative;
+  width: calc(100% - 4.5em);
+}
+.details-modal .details-modal-title h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: normal;
+}
+.details-modal .details-modal-content {
+  border-top: 1px solid #e0e0e0;
+  padding: 2em;
+  pointer-events: all;
+  overflow: auto;
+}
+.details-modal .details-modal-content p {
+  cursor: pointer;
+  padding: 1rem;
+}
+.details-modal .details-modal-content p:hover {
+  background-color: rgb(209, 207, 202);
+ 
+}
+
+.details-modal-overlay {
+  transition: opacity 0.2s ease-out;
+  pointer-events: none;
+  background: rgba(15, 23, 42, 0.8);
+  position: fixed;
+  opacity: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+}
+details[open] .details-modal-overlay {
+  pointer-events: all;
+  opacity: 0.5;
+}
+
+details summary {
+  list-style: none;
+}
+details summary:focus {
+  outline: none;
+}
+details summary::-webkit-details-marker {
+  display: none;
+}
+
