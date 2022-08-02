@@ -10,7 +10,7 @@
 
 # 🚀 OpenAPI
 - 기본 요청 URL : `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json`
-- 요청 parameter : 3번항의 요청 인터페이스 정보를 참조하여 GET 방식으로 호출
+- 요청 parameter : `GET` 방식으로 호출, 응답 표준 : `XML`, `JSON`
 > 영화진흥위원회 OpenAPI 데이터를 지정 RESTAPI 형식으로 request하여 JSON 형식으로 response 받았습니다. 전달 받은 JSON 형식의 데이터에서 필요로 하는 요소를 dictionary 구조에 parsing 하여 data set을 형성 하였습니다.
 
 ### Interface 예시
